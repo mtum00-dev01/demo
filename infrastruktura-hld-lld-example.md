@@ -3,12 +3,6 @@
 ```mermaid
 
 graph TD
-    %% Definicja stylów
-    classDef userStyle fill:#f9f,stroke:#333,stroke-width:2px;
-    classDef ingressStyle fill:#bbf,stroke:#333,stroke-width:2px;
-    classDef appStyle fill:#ddf,stroke:#333,stroke-width:2px;
-    classDef dataStyle fill:#fdf,stroke:#333,stroke-width:2px;
-    classDef extStyle fill:#ffb,stroke:#333,stroke-width:2px;
 
     %% Klienci
     subgraph "Klienci / Konsumenci"
@@ -65,6 +59,13 @@ graph TD
     
     DB_Centr -->|Backup Policy| BKP
     DB_Ded -->|Backup Policy| BKP
+    
+    Core <-->|VPN / Interconnect| SAP
+    Core <-->|VPN / Interconnect| AMMS
+    MS <-->|VPN / Interconnect| SAP
+    MS <-->|VPN / Interconnect| AMMS
+    Core -->|HTTPS| ExtSys
+    MS -->|HTTPS| ExtSys
 ```
 
 ```mermaid
