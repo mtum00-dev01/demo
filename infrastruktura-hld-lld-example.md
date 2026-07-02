@@ -3,6 +3,8 @@
 ```mermaid
 
 graph TD
+    %% Definicja stylów
+    classDef extStyle fill:#ffb,stroke:#333,stroke-width:2px;
 
     %% Klienci
     subgraph "Klienci / Konsumenci"
