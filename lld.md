@@ -60,7 +60,6 @@ graph LR
     VPN <-->|IPsec Tunnel / HL7 / FHIR| AMMS
 ```
 
-```markdown
 
 | Źródło (Source) | Cel (Destination) | Protokół | Port | Opis / Przeznaczenie |
 | :--- | :--- | :--- | :--- | :--- |
