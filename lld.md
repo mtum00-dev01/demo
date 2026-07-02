@@ -60,7 +60,7 @@ graph LR
 
 
 
-```markdown
+
 | Źródło (Source) | Cel (Destination) | Protokół | Port | Opis / Przeznaczenie |
 | :--- | :--- | :--- | :--- | :--- |
 | **Internet (User)** | Cloud Load Balancer | HTTPS | `443` | Szyfrowany ruch kliencki (Web/Mobile) |
