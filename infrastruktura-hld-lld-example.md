@@ -1,6 +1,6 @@
 HLD i LLD Aplikacji X - przykład z perspektywy infrastruktury
 
-Diagram HLD
+# Diagram HLD
 ```mermaid
 
 graph TD
@@ -69,7 +69,8 @@ graph TD
     MS -->|HTTPS| ExtSys
 ```
 
-#Diagram LLD
+# Diagram LLD
+
 ```mermaid
 
 graph LR
