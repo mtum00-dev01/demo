@@ -1,4 +1,4 @@
-#LLD Aplikacji
+#HLD i LLD Aplikacji X
 ```mermaid
 graph LR
     %% Subnet: Ingress
@@ -57,3 +57,19 @@ graph LR
 
     VPN <-->|IPsec Tunnel / RFC / HTTPS| SAP
     VPN <-->|IPsec Tunnel / HL7 / FHIR| AMMS
+
+#Macierz komuniacji
+
+```markdown
+| Źródło (Source) | Cel (Destination) | Protokół | Port | Opis / Przeznaczenie |
+| :--- | :--- | :--- | :--- | :--- |
+| **Internet (User)** | Cloud Load Balancer | HTTPS | `443` | Szyfrowany ruch kliencki (Web/Mobile) |
+| **Cloud LB** | Entra ID | HTTPS | `443` | Autentykacja użytkowników (OIDC/OAuth2 Redirects) |
+| **Cloud LB** | GKE (App X / MS) | HTTP / HTTP2 | `80`, `443` | Przekazywanie ruchu z LB do Ingress Controller |
+| **Pod: App X** | Pod: Mikroserwisy | HTTP / gRPC | `8080`, `50051` | Komunikacja wewnętrzna między usługami |
+| **GKE Pods** | Vertex AI | HTTPS | `443` | Wywołania modeli LLM przez Private Google Access |
+| **GKE Pods** | Cloud SQL (Central) | TCP | `5432` / `3306` | Dostęp do bazy danych (PostgreSQL lub MySQL) |
+| **GKE Pods** | Cloud SQL (Ded.) | TCP | `5432` / `6379` | Dostęp do baz dedykowanych / Cache (Redis) |
+| **GKE / Cloud SQL** | Cloud Storage | HTTPS | `443` | Zrzuty backupowe i eksport danych |
+| **GKE Pods** | SAP (On-Premise) | TCP / HTTPS | `443`, `33xx` | Integracja z SAP przez tunel VPN |
+| **GKE Pods** | AMMS / InfoMedica | TCP / HTTP | `HL7` / `FHIR` | Wymiana danych medycznych przez Cloud VPN |
