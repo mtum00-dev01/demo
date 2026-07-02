@@ -3,70 +3,69 @@ HLD i LLD Aplikacji X - przykład z perspektywy infrastruktury
 # Diagram HLD
 ```mermaid
 
-graph TD
+graph LR
 
-    %% Klienci
-    subgraph "Klienci / Konsumenci"
+    %% --- Kolumna 1: Klienci ---
+    subgraph C1["Klienci / Konsumenci"]
         Web[Przeglądarka / Aplikacja X]
         Mobile[Aplikacja Mobilna]
     end
-    class Web,Mobile userStyle;
 
-    %% Warstwa Brzegowa
-    subgraph "Warstwa Ingress & Security (GCP)"
+    %% --- Kolumna 2: Edge / Security ---
+    subgraph C2["Warstwa Ingress & Security (GCP)"]
         LB[Global Cloud Load Balancer / WAF]
         Entra[Microsoft Entra ID]
     end
-    class LB ingressStyle;
-    class Entra extStyle;
 
-    %% Warstwa Aplikacyjna
-    subgraph "Warstwa Aplikacyjna (GCP)"
+    %% --- Kolumna 3: Aplikacja ---
+    subgraph C3["Warstwa Aplikacyjna (GCP)"]
         Core[System Centralny Aplikacji X]
         MS[Dedykowane Mikroserwisy]
         AI[Narzędzia AI / Vertex AI]
     end
-    class Core,MS,AI appStyle;
 
-    %% Warstwa Danych
-    subgraph "Warstwa Danych & Backup (GCP)"
+    %% --- Kolumna 4: Dane ---
+    subgraph C4["Warstwa Danych & Backup (GCP)"]
         DB_Centr[(Centralna Baza Danych)]
         DB_Ded[(Dedykowane Bazy Danych)]
         BKP[(Cloud Storage - Backup)]
     end
-    class DB_Centr,DB_Ded,BKP dataStyle;
 
-    %% Systemy Zewnętrzne
-    subgraph "Systemy Zewnętrzne / On-Premise"
+    %% --- Kolumna 5: Systemy zewnętrzne ---
+    subgraph C5["Systemy Zewnętrzne / On-Premise"]
         SAP[System SAP]
         AMMS[AMMS / InfoMedica]
         ExtSys[Inne Systemy Zewnętrzne]
     end
-    class SAP,AMMS,ExtSys extStyle;
 
-    %% Relacje i komunikacja
+    %% Główne przepływy
     Web -->|HTTPS / WSS| LB
     Mobile -->|HTTPS| LB
     LB -->|OIDC / OAuth2| Entra
     LB -->|HTTPS / gRPC| Core
     LB -->|HTTPS / gRPC| MS
-    
+
     Core <-->|REST / gRPC| MS
-    Core <-->|API / Python SDK| AI
-    MS <-->|API / Python SDK| AI
-    
+    Core -->|API / Python SDK| AI
+    MS -->|API / Python SDK| AI
+
     Core -->|SQL| DB_Centr
     MS -->|SQL / NoSQL| DB_Ded
-    
     DB_Centr -->|Backup Policy| BKP
     DB_Ded -->|Backup Policy| BKP
-    
+
     Core <-->|VPN / Interconnect| SAP
     Core <-->|VPN / Interconnect| AMMS
     MS <-->|VPN / Interconnect| SAP
     MS <-->|VPN / Interconnect| AMMS
     Core -->|HTTPS| ExtSys
     MS -->|HTTPS| ExtSys
+
+    %% Niewidoczne krawędzie stabilizujące układ (bez renderowanej linii)
+    C1 ~~~ C2
+    C2 ~~~ C3
+    C3 ~~~ C4
+    C4 ~~~ C5
 ```
 
 # Diagram LLD
