@@ -1,5 +1,6 @@
-#HLD i LLD Aplikacji X - przykład
+#HLD i LLD Aplikacji X - przykład z perspektywy infrastruktury
 
+#Diagram HLD
 ```mermaid
 
 graph TD
@@ -68,6 +69,7 @@ graph TD
     MS -->|HTTPS| ExtSys
 ```
 
+#Diagram LLD
 ```mermaid
 
 graph LR
@@ -130,7 +132,7 @@ graph LR
 
 ```
 
-
+# Macierz komunikacji
 | Źródło (Source) | Cel (Destination) | Protokół | Port | Opis / Przeznaczenie |
 | :--- | :--- | :--- | :--- | :--- |
 | **Internet (User)** | Cloud Load Balancer | HTTPS | `443` | Szyfrowany ruch kliencki (Web/Mobile) |
