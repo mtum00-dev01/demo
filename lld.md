@@ -58,7 +58,7 @@ graph LR
     VPN <-->|IPsec Tunnel / RFC / HTTPS| SAP
     VPN <-->|IPsec Tunnel / HL7 / FHIR| AMMS
 
-#Macierz komuniacji
+
 
 ```markdown
 | Źródło (Source) | Cel (Destination) | Protokół | Port | Opis / Przeznaczenie |
