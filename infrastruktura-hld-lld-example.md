@@ -1,6 +1,6 @@
-#HLD i LLD Aplikacji X - przykład z perspektywy infrastruktury
+HLD i LLD Aplikacji X - przykład z perspektywy infrastruktury
 
-#Diagram HLD
+Diagram HLD
 ```mermaid
 
 graph TD
