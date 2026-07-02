@@ -3,12 +3,6 @@
 ```mermaid
 
 graph TD
-    %% Definicja stylów
-    classDef userStyle fill:#f9f,stroke:#333,stroke-width:2px;
-    classDef ingressStyle fill:#bbf,stroke:#333,stroke-width:2px;
-    classDef appStyle fill:#ddf,stroke:#333,stroke-width:2px;
-    classDef dataStyle fill:#fdf,stroke:#333,stroke-width:2px;
-    classDef extStyle fill:#ffb,stroke:#333,stroke-width:2px;
 
     %% Klienci
     subgraph "Klienci / Konsumenci"
