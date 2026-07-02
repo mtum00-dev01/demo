@@ -65,8 +65,9 @@ graph TD
     
     DB_Centr -->|Backup Policy| BKP
     DB_Ded -->|Backup Policy| BKP
+```
 
-
+```mermaid
 
 graph LR
     %% Subnet: Ingress
@@ -125,6 +126,7 @@ graph LR
 
     VPN <-->|IPsec Tunnel / RFC / HTTPS| SAP
     VPN <-->|IPsec Tunnel / HL7 / FHIR| AMMS
+
 ```
 
 
